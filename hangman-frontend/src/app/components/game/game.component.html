@@ -1,0 +1,37 @@
+<div class="game-container">
+    <h1 *ngIf="playMode">Hangman Game</h1>
+    <h1 *ngIf="!playMode">Game Details</h1>
+    <div class="hangman-image">
+        <div class="stand"></div>
+        <div class="stand-top"></div>
+        <div class="rope"></div>
+        <div class="head" *ngIf="gameState?.incorrect_attempts > 0"></div>
+        <div class="body" *ngIf="gameState?.incorrect_attempts > 1"></div>
+        <div class="left-arm" *ngIf="gameState?.incorrect_attempts > 2"></div>
+        <div class="right-arm" *ngIf="gameState?.incorrect_attempts > 3"></div>
+        <div class="left-leg" *ngIf="gameState?.incorrect_attempts > 4"></div>
+        <div class="right-leg" *ngIf="gameState?.incorrect_attempts > 5"></div>
+    </div>
+    <div class="word-display">
+        <p><strong>Word:</strong> {{ gameState?.word }}</p>
+    </div>
+    <div *ngIf="!playMode">
+        <p><strong>Selected Letters:</strong> {{ gameState?.selected_letters.join(', ') }}</p>
+        <p><strong>Win:</strong> {{ gameState?.win === 'yes' ? 'Yes' : 'No' }}</p>
+        <p><strong>DateTime:</strong> {{ gameState?.datetime }}</p>
+    </div>
+    <div class="input-section" *ngIf="playMode && !gameState?.is_over">
+        <input [(ngModel)]="inputLetter" maxlength="1" placeholder="Enter a letter" />
+        <button (click)="guessLetter()">Guess</button>
+        <p class="error-message">{{ errorMessage }}</p>
+    </div>
+    <div *ngIf="gameState?.is_over">
+        <p *ngIf="gameState?.win">Congratulations! You've won!</p>
+        <p *ngIf="!gameState?.win">Game Over! The word was "{{ formattedWord }}".</p>
+        <button *ngIf="playMode" (click)="startNewGame()">Play Again</button>
+    </div>
+    <div class="guessed-letters" *ngIf="playMode">
+        <h3>Guessed Letters:</h3>
+        <p>{{ gameState?.guessed_letters?.join(', ') }}</p>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<!-- src/app/components/games-history/games-history.component.html -->
+
+<div class="history-container">
+  <h1>Games History</h1>
+
+  <!-- Optional: Display a message when there are no games -->
+  <div *ngIf="gamesHistory.length === 0">
+    <p>No games history available.</p>
+  </div>
+
+  <!-- Display the table only if there are games -->
+  <table *ngIf="gamesHistory.length > 0">
+    <thead>
+      <tr>
+        <th>Word</th>
+        <th>Selected Letters</th>
+        <th>Win</th>
+        <th>Date & Time</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of gamesHistory">
+        <td>{{ game.word }}</td>
+        <td>{{ formatSelectedLetters(game.selected_letters) }}</td>
+        <!-- Using ngSwitch for Win Status -->
+        <td>
+          {{ game.win }}
+        </td>
+        <td>{{ game.datetime | date: 'medium' }}</td>
+        <td>
+          <a [routerLink]="['/game', game.id, 'details']" class="details-link">
+            View Details
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

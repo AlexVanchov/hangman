@@ -1,0 +1,40 @@
+/* src/app/components/games-history/games-history.component.css */
+
+.history-container {
+    padding: 20px;
+  }
+  
+  .history-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .history-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .history-container th,
+  .history-container td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .history-container th {
+    background-color: #f2f2f2;
+  }
+  
+  .history-container tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .details-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .details-link:hover {
+    text-decoration: underline;
+  }
+  
